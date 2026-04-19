@@ -1,8 +1,4 @@
 <template>
-  <!--
-    Компонент списка планет.
-    Аналог Лаб. №6 - компонент EmojiList (v-for + emit событие).
-  -->
   <div class="card-grid" v-if="planets.length > 0">
     <PlanetCard
       v-for="planet in planets"
@@ -23,7 +19,7 @@
 <script setup>
 import PlanetCard from './PlanetCard.vue'
 
-// defineProps - массив планет (Лаб. №6 - EmojiList принимает массив)
+// defineProps - массив планет
 defineProps({
   planets: {
     type: Array,
@@ -35,6 +31,6 @@ defineProps({
   }
 })
 
-// Пользовательское событие selectPlanet (Лаб. №6 - selectEmoji)
+// Пользовательское событие selectPlanet
 defineEmits(['selectPlanet', 'edit', 'delete'])
 </script>
