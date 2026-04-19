@@ -1,14 +1,8 @@
 <template>
-  <!--
-    Компонент карточки планеты.
-    Аналог Лаб. №6 - компонент Emoji с defineProps.
-    Принимает объект планеты как входной параметр.
-  -->
   <div class="card" style="cursor: pointer;">
     <div class="flex-between">
       <div class="card-title">{{ planet.name }}</div>
       <div class="flex gap-1">
-        <!-- Кнопки действий (Лаб. №2 - кнопки удаления/редактирования) -->
         <button class="btn btn-icon btn-outline" @click.stop="$emit('edit', planet)" title="Редактировать">
           ✏️
         </button>
@@ -31,7 +25,7 @@
 import { computed } from 'vue'
 import { store } from '../data/store.js'
 
-// defineProps (Лаб. №6 - входные параметры компонента)
+// defineProps 
 const props = defineProps({
   planet: {
     type: Object,
@@ -39,7 +33,7 @@ const props = defineProps({
   }
 })
 
-// Пользовательские события (Лаб. №6 - emit)
+// Пользовательские события 
 defineEmits(['edit', 'delete'])
 
 // Computed для получения имени системы
