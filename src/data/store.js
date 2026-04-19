@@ -1,6 +1,6 @@
 /**
  * Реактивное хранилище данных приложения.
- * Используется reactive (Лаб. №3, №4) для глобального состояния.
+ * Используется reactive для глобального состояния.
  */
 import { reactive } from 'vue'
 
@@ -171,7 +171,7 @@ const initialOrbitalPositions = [
   }
 ]
 
-// Глобальное реактивное хранилище (аналог Лаб. №4 - reactive переменные)
+// Глобальное реактивное хранилище
 export const store = reactive({
   starSystems: [...initialStarSystems],
   planets: [...initialPlanets],
@@ -220,7 +220,7 @@ export const store = reactive({
     }
   },
 
-  // Удаление планеты (Лаб. №2 - удаление элемента из массива)
+  // Удаление планеты 
   deletePlanet(id) {
     this.orbitalPositions = this.orbitalPositions.filter(op => op.planetId !== id)
     this.planets = this.planets.filter(p => p.id !== id)
