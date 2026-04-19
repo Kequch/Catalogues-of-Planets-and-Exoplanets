@@ -1,8 +1,4 @@
 <template>
-  <!--
-    ЛАБОРАТОРНАЯ РАБОТА №3 - Форма регистрации
-    v-model, тернарный оператор, :disabled, mousedown/mouseup, showPassword
-  -->
   <div class="container">
     <div class="page-header">
       <h1>👤 Регистрация исследователя</h1>
@@ -11,7 +7,6 @@
 
     <div style="max-width: 550px;">
       <div class="card">
-        <!-- 1. Имя пользователя (Лаб. №3 - input type="text") -->
         <div class="form-group">
           <label>Имя</label>
           <input
@@ -22,7 +17,6 @@
           />
         </div>
 
-        <!-- 2. Фамилия (Лаб. №3 - input type="text") -->
         <div class="form-group">
           <label>Фамилия</label>
           <input
@@ -33,7 +27,6 @@
           />
         </div>
 
-        <!-- 3. Пол - radiobutton (Лаб. №3 - radiobutton) -->
         <div class="form-group">
           <label>Пол</label>
           <div class="radio-group">
@@ -48,10 +41,6 @@
           </div>
         </div>
 
-        <!--
-          4-5. Пароль и подтверждение пароля (Лаб. №3)
-          Тип поля зависит от showPassword (Лаб. №3, п.8)
-        -->
         <div class="form-group">
           <label>Пароль</label>
           <input
@@ -72,11 +61,6 @@
           />
         </div>
 
-        <!--
-          Кнопка «Показать пароль» (Лаб. №3, п.8)
-          mousedown → showPassword = true
-          mouseup   → showPassword = false
-        -->
         <div class="form-group">
           <button
             class="btn btn-outline btn-sm"
@@ -88,7 +72,6 @@
           </button>
         </div>
 
-        <!-- Предупреждение о несовпадении паролей -->
         <p
           v-if="user.password && user.confirmPassword && !passwordsMatch"
           class="text-danger"
@@ -97,9 +80,6 @@
           ⚠️ Пароли не совпадают
         </p>
 
-        <!--
-          5. Интерполяция с тернарным оператором (Лаб. №3, п.5)
-        -->
         <p
           v-if="user.firstName || user.lastName"
           style="color: var(--color-accent-light); margin-bottom: 1rem; font-size: 0.95rem;"
@@ -108,10 +88,6 @@
           {{ user.gender === 'male' ? 'Мужского' : 'Женского' }} пола.
         </p>
 
-        <!--
-          6. Кнопка заблокирована если пароли не совпадают (Лаб. №3, п.6)
-          7. По клику - вывод в консоль (Лаб. №3, п.7)
-        -->
         <button
           class="btn btn-primary"
           :disabled="!passwordsMatch || !user.firstName || !user.lastName || !user.password"
@@ -121,7 +97,6 @@
           🚀 Зарегистрироваться
         </button>
 
-        <!-- Сообщение об успешной регистрации -->
         <div
           v-if="registered"
           class="mt-2"
@@ -137,7 +112,7 @@
 <script setup>
 import { reactive, ref, computed } from 'vue'
 
-// Реактивный объект (Лаб. №3, п.3 - reactive переменная)
+// Реактивный объект 
 const user = reactive({
   firstName: '',
   lastName: '',
@@ -146,17 +121,17 @@ const user = reactive({
   confirmPassword: ''
 })
 
-// Лаб. №3, п.8 - showPassword переменная
+// showPassword переменная
 const showPassword = ref(false)
 const registered = ref(false)
 const registeredName = ref('')
 
-// Computed - проверка совпадения паролей (Лаб. №3, п.6)
+// Computed - проверка совпадения паролей 
 const passwordsMatch = computed(() => {
   return user.password === user.confirmPassword
 })
 
-// Лаб. №3, п.7 - обработчик клика, вывод в консоль
+// обработчик клика, вывод в консоль
 function register() {
   console.log('Данные формы регистрации:', {
     firstName: user.firstName,
