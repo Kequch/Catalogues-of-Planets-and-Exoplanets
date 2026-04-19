@@ -9,7 +9,6 @@
         <p>Детальная информация о планете</p>
       </div>
 
-      <!-- Информация о планете -->
       <div class="card mb-2" style="border-left: 4px solid var(--color-primary);">
         <div class="card-desc" style="font-size: 1.05rem; color: var(--color-text);">
           {{ planet.description }}
@@ -22,7 +21,6 @@
         </div>
       </div>
 
-      <!-- Орбитальные позиции планеты -->
       <div class="flex-between mt-3 mb-2">
         <h2 style="color: var(--color-accent-light); font-family: 'Orbitron', sans-serif; font-size: 1.3rem;">
           🛸 Орбитальные позиции
@@ -30,7 +28,6 @@
         <button class="btn btn-accent btn-sm" @click="openAddOrbit">+ Добавить орбиту</button>
       </div>
 
-      <!-- v-if / v-else (Лаб. №4 - условный рендеринг) -->
       <div v-if="orbitalPositions.length > 0">
         <table class="data-table">
           <thead>
@@ -42,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- v-for (Лаб. №4) -->
+
             <tr v-for="orbit in orbitalPositions" :key="orbit.id">
               <td>{{ orbit.id }}</td>
               <td>{{ orbit.description }}</td>
@@ -72,7 +69,6 @@
       <button class="btn btn-primary mt-2" @click="$router.push('/planets')">Вернуться к списку</button>
     </div>
 
-    <!-- Модалка для орбитальной позиции -->
     <div class="modal-overlay" v-if="showOrbitModal" @click.self="closeOrbitModal">
       <div class="modal-content">
         <h2>{{ editingOrbit ? 'Редактировать' : 'Добавить' }} орбитальную позицию</h2>
@@ -111,7 +107,6 @@
       </div>
     </div>
 
-    <!-- Диалог удаления орбиты -->
     <ConfirmDialog
       v-if="orbitToDelete"
       title="Удаление орбитальной позиции"
