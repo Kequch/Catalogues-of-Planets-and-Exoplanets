@@ -1,11 +1,9 @@
 <template>
   <div>
-    <!-- Hero секция -->
     <section class="hero">
       <h1>🪐 Каталог планет и экзопланет</h1>
       <p>Исследуйте звёздные системы, планеты и их орбитальные характеристики в интерактивном каталоге</p>
 
-      <!-- Статистика (Лаб. №4 - computed переменные для подсчёта) -->
       <div class="features-grid">
         <router-link to="/star-systems" class="feature-card">
           <div class="icon">⭐</div>
@@ -43,7 +41,6 @@
       </div>
     </section>
 
-    <!-- Последние добавленные планеты -->
     <div class="container">
       <div class="page-header">
         <h1>🔭 Последние добавленные планеты</h1>
@@ -79,7 +76,7 @@
 import { computed } from 'vue'
 import { store } from '../data/store.js'
 
-// Computed переменные (Лаб. №4)
+// Computed переменные 
 const starSystemCount = computed(() => store.starSystems.length)
 const planetCount = computed(() => store.planets.length)
 const orbitalCount = computed(() => store.orbitalPositions.length)
