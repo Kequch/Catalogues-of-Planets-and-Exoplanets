@@ -1,5 +1,4 @@
 <template>
-  <!-- Навигация (Лаб. №1 - управление через кнопки, Лаб. №3 - форма с роутингом) -->
   <nav class="navbar">
     <div class="navbar-inner">
       <router-link to="/" class="navbar-brand">🌌 PlanetCatalog</router-link>
@@ -15,10 +14,10 @@
     </div>
   </nav>
 
-  <!-- Роутер - переключение страниц -->
+
   <router-view />
 
-  <!-- Футер -->
+
   <footer style="text-align: center; padding: 2rem; color: var(--color-text-secondary); border-top: 1px solid var(--color-border); font-size: 0.85rem;">
     🌌 Каталог планет и экзопланет — Курсовая работа Vue.js © {{ currentYear }}
   </footer>
