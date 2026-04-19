@@ -1,8 +1,4 @@
 <template>
-  <!--
-    ЛАБОРАТОРНАЯ РАБОТА №4 - Учёт расходов (бюджет космических миссий)
-    reactive/ref переменные, v-for, v-model (.trim, .number), computed, v-if
-  -->
   <div class="container">
     <div class="page-header">
       <h1>💰 Бюджет космических миссий</h1>
@@ -10,13 +6,9 @@
     </div>
 
     <div style="display: grid; grid-template-columns: 350px 1fr; gap: 2rem; align-items: start;">
-      <!-- Форма добавления операции (Лаб. №4, п.3) -->
       <div class="card" style="position: sticky; top: 90px;">
         <h3 style="margin-bottom: 1rem; color: var(--color-primary-light);">Новая операция</h3>
-
-        <!--
-          v-model.trim и v-model.number (Лаб. №4, п.3)
-        -->
+        
         <div class="form-group">
           <label>Название статьи бюджета</label>
           <input
@@ -49,13 +41,9 @@
         </button>
       </div>
 
-      <!-- Основная часть -->
       <div>
-        <!--
-          7. Балансы отображаются только если есть операции (Лаб. №4, п.7 - v-if)
-        -->
+
         <div v-if="history.length > 0">
-          <!-- Карточки балансов (Лаб. №4, п.4, п.5, п.6) -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
             <div class="card" style="text-align: center;">
               <div class="text-secondary" style="font-size: 0.85rem;">Общий баланс</div>
@@ -80,7 +68,6 @@
             </div>
           </div>
 
-          <!-- История операций (Лаб. №4, п.2 - v-for) -->
           <h3 style="margin-bottom: 1rem; color: var(--color-primary-light);">📋 История операций</h3>
 
           <div
@@ -102,7 +89,7 @@
                 >
                   {{ item.amount >= 0 ? '+' : '' }}{{ formatCurrency(item.amount) }}
                 </span>
-                <!-- Кнопки редактирования/удаления (Лаб. №2) -->
+                
                 <button class="btn btn-icon btn-outline btn-sm" @click="renameTransaction(item)" title="Переименовать">
                   ✏️
                 </button>
@@ -114,7 +101,6 @@
           </div>
         </div>
 
-        <!-- Лаб. №4, п.7 - v-else: сообщение об отсутствии операций -->
         <div class="empty-state" v-else>
           <div class="icon">💸</div>
           <p>Вы не совершали финансовых операций</p>
@@ -128,34 +114,34 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-// 1. Реактивная переменная history (Лаб. №4, п.1)
+// 1. Реактивная переменная history
 const history = ref([])
 let nextId = 1
 
-// Поля формы (Лаб. №4, п.3)
+// Поля формы 
 const title = ref('')
 const amount = ref(0)
 
-// 4. computed - сумма доходов (Лаб. №4, п.4)
+// 4. computed - сумма доходов 
 const incomeBalance = computed(() => {
   return history.value
     .filter(item => item.amount > 0)
     .reduce((sum, item) => sum + item.amount, 0)
 })
 
-// 5. computed - сумма расходов (Лаб. №4, п.5)
+// 5. computed - сумма расходов 
 const outcomeBalance = computed(() => {
   return history.value
     .filter(item => item.amount < 0)
     .reduce((sum, item) => sum + item.amount, 0)
 })
 
-// 6. computed - общий баланс (Лаб. №4, п.6)
+// 6. computed - общий баланс 
 const totalBalance = computed(() => {
   return incomeBalance.value + outcomeBalance.value
 })
 
-// Добавление операции (Лаб. №4, п.3)
+// Добавление операции 
 function addTransaction() {
   if (!title.value || !amount.value) return
 
@@ -169,12 +155,12 @@ function addTransaction() {
   amount.value = 0
 }
 
-// Удаление (Лаб. №2 - удаление из массива)
+// Удаление 
 function deleteTransaction(id) {
   history.value = history.value.filter(item => item.id !== id)
 }
 
-// Переименование (Лаб. №2 - prompt для нового имени)
+// Переименование 
 function renameTransaction(item) {
   const newName = prompt('Введите новое название:', item.text)
   if (newName !== null && newName.trim() !== '') {
