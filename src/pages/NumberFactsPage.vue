@@ -1,8 +1,5 @@
 <template>
-  <!--
-    ЛАБОРАТОРНАЯ РАБОТА №5 - Случайные факты о числах
-    Поле ввода, выпадающий список категорий, fetch GET-запрос, индикатор загрузки
-  -->
+
   <div class="container">
     <div class="page-header">
       <h1>🔢 Факты о числах</h1>
@@ -11,7 +8,6 @@
 
     <div style="max-width: 600px;">
       <div class="card">
-        <!-- Поле ввода числа (Лаб. №5) -->
         <div class="form-group">
           <label>Число</label>
           <input
@@ -23,7 +19,6 @@
           />
         </div>
 
-        <!-- Выпадающий список категорий (Лаб. №5) -->
         <div class="form-group">
           <label>Категория</label>
           <select class="form-control" v-model="category">
@@ -33,7 +28,6 @@
           </select>
         </div>
 
-        <!-- Поиск по кнопке или Enter (Лаб. №5) -->
         <button
           class="btn btn-primary"
           @click="searchFact"
@@ -43,13 +37,11 @@
           🔍 Поиск
         </button>
 
-        <!-- Индикатор загрузки (Лаб. №5) -->
         <div class="loading-container" v-if="loading">
           <div class="spinner"></div>
           <span>Загрузка факта...</span>
         </div>
 
-        <!-- Результат -->
         <div v-if="result && !loading" class="mt-2">
           <div
             v-if="result.found"
@@ -61,9 +53,6 @@
             <div style="font-size: 1.05rem;">{{ result.text }}</div>
           </div>
 
-          <!--
-            Лаб. №5 - Если факт не найден: "{number} - скучное число/скучный год"
-          -->
           <div
             v-else
             style="padding: 1.25rem; background: rgba(255, 107, 107, 0.1); border-radius: var(--radius-sm); border: 1px solid var(--color-danger);"
@@ -74,7 +63,6 @@
           </div>
         </div>
 
-        <!-- История запросов -->
         <div v-if="factHistory.length > 0" class="mt-3">
           <h3 style="margin-bottom: 1rem; color: var(--color-primary-light); font-size: 1rem;">
             📜 История запросов
@@ -105,7 +93,7 @@ const loading = ref(false)
 const result = ref(null)
 const factHistory = ref([])
 
-// Fetch GET-запрос (Лаб. №5 + Лаб. №6 - fetch)
+// Fetch GET-запрос 
 async function searchFact() {
   if (number.value === null || number.value === '') return
 
