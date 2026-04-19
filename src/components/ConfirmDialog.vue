@@ -1,5 +1,4 @@
 <template>
-  <!-- Модальное окно подтверждения удаления -->
   <div class="modal-overlay" @click.self="$emit('cancel')">
     <div class="modal-content">
       <h2>{{ title }}</h2>
@@ -13,12 +12,12 @@
 </template>
 
 <script setup>
-// defineProps - Лаб. №6 (входные параметры компонента)
+// defineProps 
 defineProps({
   title: { type: String, default: 'Подтверждение' },
   message: { type: String, default: 'Вы уверены?' }
 })
 
-// Пользовательские события (Лаб. №6 - defineEmits / selectEmoji)
+// Пользовательские события 
 defineEmits(['confirm', 'cancel'])
 </script>
