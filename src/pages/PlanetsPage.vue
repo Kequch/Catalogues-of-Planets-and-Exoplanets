@@ -8,7 +8,6 @@
       <button class="btn btn-primary" @click="openAddModal">+ Добавить</button>
     </div>
 
-    <!-- Фильтры (Лаб. №3 - v-model, Лаб. №5 - выпадающий список категорий) -->
     <div class="flex gap-2 mb-2" style="flex-wrap: wrap;">
       <div class="form-group" style="flex: 1; min-width: 200px;">
         <input
@@ -32,10 +31,6 @@
       </div>
     </div>
 
-    <!--
-      Компонент PlanetList (Лаб. №6 - EmojiList + selectEmoji).
-      Передаём массив планет, обрабатываем события.
-    -->
     <PlanetList
       :planets="filteredPlanets"
       emptyMessage="Планеты не найдены. Добавьте первую планету!"
@@ -44,12 +39,10 @@
       @delete="confirmDelete"
     />
 
-    <!-- Модальное окно добавления/редактирования планеты -->
     <div class="modal-overlay" v-if="showModal" @click.self="closeModal">
       <div class="modal-content">
         <h2>{{ editingPlanet ? 'Редактировать' : 'Добавить' }} планету</h2>
 
-        <!-- Форма (Лаб. №3 - привязка полей v-model) -->
         <div class="form-group">
           <label>Наименование *</label>
           <input type="text" class="form-control" v-model.trim="form.name" placeholder="Название планеты" />
@@ -92,7 +85,6 @@
       </div>
     </div>
 
-    <!-- Диалог удаления -->
     <ConfirmDialog
       v-if="planetToDelete"
       title="Удаление планеты"
@@ -125,7 +117,7 @@ const form = ref({
   discoveryDate: ''
 })
 
-// Computed - фильтрация планет (Лаб. №4)
+// Computed - фильтрация планет 
 const filteredPlanets = computed(() => {
   let result = store.planets
 
@@ -178,7 +170,7 @@ function savePlanet() {
   } else {
     store.addPlanet({ ...form.value })
   }
-  // Лаб. №3, п.7 - вывод в консоль
+  //вывод в консоль
   console.log('Сохранена планета:', form.value)
   closeModal()
 }
@@ -187,7 +179,7 @@ function confirmDelete(planet) {
   planetToDelete.value = planet
 }
 
-// Лаб. №2 - удаление из массива
+//удаление из массива
 function deletePlanet() {
   store.deletePlanet(planetToDelete.value.id)
   planetToDelete.value = null
