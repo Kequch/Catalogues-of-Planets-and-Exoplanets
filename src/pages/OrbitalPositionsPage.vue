@@ -8,7 +8,6 @@
       <button class="btn btn-accent" @click="openAddModal">+ Добавить</button>
     </div>
 
-    <!-- Фильтр по планете (Лаб. №5 - выпадающий список) -->
     <div class="form-group" style="max-width: 300px;">
       <select class="form-control" v-model.number="filterPlanet">
         <option :value="0">Все планеты</option>
@@ -18,7 +17,6 @@
       </select>
     </div>
 
-    <!-- Таблица (Лаб. №4 - v-for + v-if) -->
     <div v-if="filteredPositions.length > 0" style="overflow-x: auto;">
       <table class="data-table">
         <thead>
@@ -59,7 +57,6 @@
       <p>Орбитальные позиции не найдены</p>
     </div>
 
-    <!-- Модалка добавления/редактирования -->
     <div class="modal-overlay" v-if="showModal" @click.self="closeModal">
       <div class="modal-content">
         <h2>{{ editingPos ? 'Редактировать' : 'Добавить' }} орбитальную позицию</h2>
@@ -107,7 +104,6 @@
       </div>
     </div>
 
-    <!-- Диалог удаления -->
     <ConfirmDialog
       v-if="posToDelete"
       title="Удаление орбитальной позиции"
